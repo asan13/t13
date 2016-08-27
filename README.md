@@ -1,11 +1,14 @@
 Ответы
 ======
 
+* * *
 **1**
 
+* * *
 **2**
 
-```sql
+
+```plpgsql
 CREATE OR REPLACE FUNCTION brackets_balance(str text) RETURNS bool
 LANGUAGE plpgsql
 AS $$
@@ -30,7 +33,7 @@ END;
 $$;
 ```
 
-
+***
 **3**
 На такой таблице приведенный запрос будет работать медленно, например
 для _тракторист - женщина_ или _нянечка - мужчина_. 
@@ -43,7 +46,7 @@ seqscan. В случае тракториста-женщины будут про
 ```sql
 set enable_seqscan = false;
 PREPARE foo (text, text) AS 
-SELECT 'found' where exists (
+SELECT 'found' WHERE exists (
     SELECT * FROM employee 
     WHERE occupation = $1 AND sex = $2
 );
