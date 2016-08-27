@@ -5,6 +5,7 @@
 
 **2**
 
+```sql
 CREATE OR REPLACE FUNCTION brackets_balance(str text) RETURNS bool
 LANGUAGE plpgsql
 AS $$
@@ -27,7 +28,7 @@ BEGIN
 
 END;
 $$;
-
+```
 
 
 **3**
