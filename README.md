@@ -1,10 +1,11 @@
 Ответы
 ======
 
+* * *
 **1**
 
-Я понял задачку так, что надо вернуть  _вернуть десять постов_, 
-а не _по десять_ от каждого друга, но на всякий случай 
+Я понял задачку так, что надо вернуть  _десять последних постов_, 
+а не _по десять последних_ от каждого друга, но на всякий случай 
 сделал оба варианта. Первый запрос возвращает 10 последних постов,
 второй - по десять последних каждого друга.
 
@@ -50,9 +51,10 @@ CREATE INDEX post_usr_id_idx ON post(usr_id);
 CREATE INDEX post_added_idx ON post(added);
 ```
 
+* * *
 **2**
 
-```sql
+```plpgsql
 CREATE OR REPLACE FUNCTION brackets_balance(str text) RETURNS bool
 LANGUAGE plpgsql
 AS $$
@@ -77,7 +79,7 @@ END;
 $$;
 ```
 
-
+***
 **3**
 На такой таблице приведенный запрос будет работать медленно, например
 для _тракторист - женщина_ или _нянечка - мужчина_. 
@@ -90,7 +92,7 @@ seqscan. В случае тракториста-женщины будут про
 ```sql
 set enable_seqscan = false;
 PREPARE foo (text, text) AS 
-SELECT 'found' where exists (
+SELECT 'found' WHERE exists (
     SELECT * FROM employee 
     WHERE occupation = $1 AND sex = $2
 );
